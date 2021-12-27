@@ -1,0 +1,56 @@
+ <div>
+        <input type="text"
+  ngxDaterangepickerMd
+  [timePicker]="true"
+
+  [locale]="locale"
+  [(ngModel)]="selected"
+  [singleDatePicker]="true"
+  [autoApply]="true"/>
+      </div>
+      
+        locale: LocaleConfig = {
+    applyLabel: this.applyLabel,
+    customRangeLabel: ' - ',
+    daysOfWeek: moment.weekdaysMin(),
+    monthNames: moment.monthsShort(),
+    firstDay: moment.localeData().firstDayOfWeek(),
+    clearLabel: '',
+
+  };
+    Change($event: any) {
+    if (this.select && $event) {
+      if($event?.endDate != null && $event?.startDate!= null){
+        let days = new Date($event?.endDate._d).getDate() < 10 ? '0' + new Date($event?.endDate._d).getDate() : new Date($event?.endDate._d).getDate();
+        let xsm = new Date($event?.endDate._d).getMonth() + 1;
+        let ms = xsm < 10 ? '0' + xsm : xsm;
+        let yys = new Date($event?.endDate._d).getFullYear();
+
+        let dayf = new Date($event?.startDate._d).getDate() < 10 ? '0' + new Date($event?.startDate._d).getDate() : new Date($event?.startDate._d).getDate();
+        let xmsf=new Date($event?.endDate._d).getMonth() + 1;
+        let mf = xmsf < 10 ? '0' + xmsf: xmsf;
+        let yyf = new Date($event?.startDate._d).getFullYear();
+        this.to_date = days + '/' + ms + '/' + yys;
+        this.from_date = dayf + '/' + mf + '/' + yyf;
+        this.getNews();
+      }else{
+        this.getNews();
+
+      }
+
+    }
+  }
+import * as moment from 'moment';
+
+import { LocaleConfig } from 'ngx-daterangepicker-material';
+
+  if (localStorage.getItem('lang') == "ar") {
+  moment.defineLocale('ar-sa-mine', {
+    parentLocale: 'ar-sa',
+  })
+} else {
+  moment.defineLocale('en-us', {
+    parentLocale: 'en-us',
+  })
+
+}
