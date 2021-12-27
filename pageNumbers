@@ -1,0 +1,11 @@
+function pageNumbers(count, current) {
+    var shownPages = 3;
+    var result = [];
+    if (current > count - shownPages) {
+        result.push(count - 2, count - 1, count);
+    } else {
+        result.push(current, current + 1, current + 2, '...', count);
+    }
+    return result;
+}
+console.log(pageNumbers(50,50))
