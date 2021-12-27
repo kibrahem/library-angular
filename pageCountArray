@@ -1,0 +1,20 @@
+var test = function (count, current) {
+    this.pageCountArray = [];
+
+    var shownPageNumbers = 3;
+
+
+    for (var i = current; i <= count; i++) {
+        if (this.pageCountArray.length < shownPageNumbers) {
+            this.pageCountArray.push(i);
+        }
+        else {
+            this.pageCountArray.push('...');
+            this.pageCountArray.push(count);
+            break;
+        }
+    }
+
+    return this.pageCountArray
+}
+console.log(test(100,50))
